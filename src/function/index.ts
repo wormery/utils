@@ -1,0 +1,35 @@
+/**
+ * 让自执行函数懒加载
+ *
+ * 懒函数也不要滥用！！！
+ *
+ * @param fun 要懒加载的自执行函数
+ * @param rest1 要懒加载的自执行函数的参数
+ * @returns 返回一个函数，执行后初始化，加第一次调用一起执行
+ */
+export function lazyFun<A1 extends any[], A2 extends any[], R>(
+  fun: (...rest: A1) => (...rest: A2) => R,
+  ...rest1: A1
+) {
+  //存储传入的高级函数返回的函数， 你是不是晕了，我写的时候也把自己绕进去了
+  let rf: any = (...rest2: A2) => (rf = fun(...rest1))(...rest2);
+  //这里目前简化不了只能返回高级函数， 是无法直接返回我们传入的高级函数里面返回的高级函数的，
+  //因为使用者已经将其放到了变量里，我们改不了他的变量,只能套一层改自己的了变量了
+  return (...rest2: A2) => rf(...rest2);
+}
+
+/**
+ * 给函数绑定新指定的this，并返回一个新的函数
+ * @param _this
+ * @param fn
+ * @returns  新的函数
+ */
+export function polyfillBind<F extends { (...rest: any): any }>(
+  _this: Object,
+  fn: F
+) {
+  const boundFn: F = <F>function (...rest: any) {
+    return fn.apply(_this, rest);
+  };
+  return boundFn;
+}
