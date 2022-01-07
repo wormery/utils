@@ -8,5 +8,5 @@ export default {
     file: "lib/utils.js",
     format: "umd",
   },
-  plugins: [typescript(), resolve()],
+  plugins: [resolve(), typescript()],
 };
