@@ -1,4 +1,4 @@
-import { equalToFalse, isFalse, isNotUndef } from "..";
+import { equalToFalse, isNotUndef } from "..";
 
 /**
  * 缓存方法，传入一个函数，要求传入的函数的第一个参数为一个str，用作key

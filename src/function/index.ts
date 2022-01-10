@@ -33,3 +33,26 @@ export function polyfillBind<F extends { (...rest: any): any }>(
   };
   return boundFn;
 }
+
+/**
+ *  修改函数的this环境
+ *
+ * @param _this 传入你想要让成为的this
+ * @param fun 传入你要运行的函数
+ * @param rest 函数的参数
+ */
+export function call<A extends any[], R, THIS>(
+  _this: THIS,
+  fun: (...rest: A) => R,
+  ...rest: A
+) {
+  //使用symbol可以避免产生重复
+  let temp = Symbol("temp");
+
+  (_this as any)[temp] = fun;
+
+  let ret = (_this as any)[temp](...rest);
+
+  delete (_this as any)[temp];
+  return ret;
+}

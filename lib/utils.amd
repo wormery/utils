@@ -1,8 +1,4 @@
-(function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
-  typeof define === 'function' && define.amd ? define(['exports'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.utils = {}));
-})(this, (function (exports) { 'use strict';
+define(['exports'], (function (exports) { 'use strict';
 
   /**
    * it can check whether is a undefine type ,
@@ -383,6 +379,21 @@
       };
       return boundFn;
   }
+  /**
+   *  修改函数的this环境
+   *
+   * @param _this 传入你想要让成为的this
+   * @param fun 传入你要运行的函数
+   * @param rest 函数的参数
+   */
+  function call(_this, fun, ...rest) {
+      //使用symbol可以避免产生重复
+      let temp = Symbol("temp");
+      _this[temp] = fun;
+      let ret = _this[temp](...rest);
+      delete _this[temp];
+      return ret;
+  }
 
   /**
    * 将symboltostring 然后去掉Symbol()拿到括号里面的东西
@@ -430,6 +441,7 @@
   });
 
   exports.cached = cached;
+  exports.call = call;
   exports.camelize = camelize;
   exports.capitalize = capitalize;
   exports.equalToFalse = equalToFalse;

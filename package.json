@@ -1,6 +1,6 @@
 {
 	"name": "@wormery/utils",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "一个工具库",
 	"publishConfig": {
 		"access": "public"
@@ -15,20 +15,25 @@
 		"name": "meke",
 		"url": "http://github.com/mekeer"
 	},
-	"main": "./lib/utils.js",
+	"main": "lib/utils.common.js",
+	"module": "lib/utils.esm.js",
+	"unpkg": "lib/utils.umd.js",
+	"jsdelivr": "lib/utils.iife.js",
 	"types": "./lib/index.d.ts",
 	"files": [
 		"lib",
 		"src"
 	],
 	"scripts": {
-		"build": "pnpm build:dev",
-		"build:dev": "pnpm rollup -c"
+		"build": "pnpm build:all",
+		"build:all": "pnpm rollup -c"
 	},
 	"devDependencies": {
+		"@rollup/plugin-commonjs": "^21.0.1",
 		"@rollup/plugin-node-resolve": "^13.1.2",
 		"@types/bluebird": "*",
 		"@types/node": "*",
+		"fs": "^0.0.1-security",
 		"rollup": "^2.63.0",
 		"rollup-plugin-typescript2": "^0.31.1",
 		"ts-toolbelt": "^9.6.0",

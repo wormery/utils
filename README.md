@@ -4,7 +4,14 @@
 
 这是一个工具库，里面有很多好用的函数
 
-- umd 模块
+**支持：**
+
+1. amd – 异步模块定义，用于像 RequireJS 这样的模块加载器
+2. cjs – CommonJS，适用于 Node 和 Browserify/Webpack
+3. esm – 将软件包保存为 ES 模块文件，在现代浏览器中可以通过 <script type=module> 标签引入
+4. iife – 一个自动执行的功能，适合作为<script>标签。（如果要为应用程序创建一个捆绑包，您可能想要使用它，因为它会使文件大小变小。）
+5. umd – 通用模块定义，以 amd，cjs 和 iife 为一体
+6. system - SystemJS 加载器格式
 
 ## 快速开始
 
