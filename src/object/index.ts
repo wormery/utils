@@ -1,7 +1,7 @@
-import { TypeEqual, TypeOr } from "..";
-import { isUndef } from "../isType";
+import { TypeEqual, TypeOr } from '..'
+import { isUndef } from '../isType'
 
-const hasOwnProperty = Object.prototype.hasOwnProperty;
+const hasOwnProperty = Object.prototype.hasOwnProperty
 
 /**
  * 检查自有属性，必须是自己有的才会检查到
@@ -18,7 +18,7 @@ export function hasOwn<O extends Object, K extends symbol | string | number>(
   obj: O,
   key: K
 ): obj is IsHasType<O, K> {
-  return hasOwnProperty.call(obj, key);
+  return hasOwnProperty.call(obj, key)
 }
 
 /**
@@ -35,8 +35,7 @@ export function hasProp<O extends Object, K extends symbol | string | number>(
   obj: O,
   key: K
 ): obj is IsHasType<O, K> {
-  let x: any = (obj as any)[key];
-  return !!obj && !isUndef(x);
+  return !!obj && !isUndef((obj as any)[key])
 }
 
 /**
@@ -47,4 +46,4 @@ type IsHasType<O, K extends symbol | string | number> = TypeOr<
   TypeEqual<K, number>
 > extends true
   ? O
-  : O & { [key in K]: any };
+  : O & { [key in K]: any }

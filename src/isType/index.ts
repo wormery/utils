@@ -7,8 +7,8 @@
  * @param v it object to be checked.
  * @returns it is undefine will return true;
  */
-export function isUndef(v: any): v is undefined {
-  return v === undefined;
+export function isUndef(v: unknown): v is undefined {
+  return v === undefined
 }
 
 /**
@@ -17,8 +17,8 @@ export function isUndef(v: any): v is undefined {
  * @param v
  * @returns
  */
-export function toTypeOf(v: any): string {
-  return typeof v;
+export function toTypeOf(v: unknown): string {
+  return typeof v
 }
 
 /**
@@ -27,8 +27,8 @@ export function toTypeOf(v: any): string {
  * @param v 传入任何值
  * @returns 如果不是未定义返回true
  */
-export function isNotUndef(v: any): boolean {
-  return !isUndef(v);
+export function isNotUndef(v: unknown): boolean {
+  return !isUndef(v)
 }
 
 /**
@@ -37,8 +37,8 @@ export function isNotUndef(v: any): boolean {
  * @param v 传入任何类型
  * @returns 如果是函数返回true
  */
-export function isFunction(v: any): v is Function {
-  return typeof v === "function";
+export function isFunction(v: unknown): v is Function {
+  return typeof v === 'function'
 }
 
 /**
@@ -48,7 +48,7 @@ export function isFunction(v: any): v is Function {
  * @returns
  */
 export function isEmpty(v: string): boolean {
-  return v.length === 0;
+  return v.length === 0
 }
 
 /**
@@ -60,8 +60,8 @@ export function isEmpty(v: string): boolean {
  * @param v it is an object to be checked.
  * @returns if it is null ,it will return true;
  */
-export function isNull(v: any): v is null {
-  return v === null;
+export function isNull(v: unknown): v is null {
+  return v === null
 }
 
 /**
@@ -71,8 +71,8 @@ export function isNull(v: any): v is null {
  * @param v it can be anything type;
  * @returns   if it is null  or undefine ,it will return true;
  */
-export function isUndefAndNull(v: any): v is null | undefined {
-  return isNull(v) || isUndef(v);
+export function isUndefAndNull(v: unknown): v is null | undefined {
+  return isNull(v) || isUndef(v)
 }
 
 /**
@@ -84,8 +84,8 @@ export function isUndefAndNull(v: any): v is null | undefined {
  * @param v  it is a Object to determine
  * @returns if it should return true ,it will return true.
  */
-export function isTure(v: any): boolean {
-  return !!v === true;
+export function isTure(v: unknown): boolean {
+  return Boolean(v)
 }
 
 /**
@@ -94,8 +94,8 @@ export function isTure(v: any): boolean {
  * @param v
  * @returns v=true return true
  */
-export function equalToTrue(v: any): boolean {
-  return v === true;
+export function equalToTrue(v: unknown): boolean {
+  return v === true
 }
 
 /**
@@ -107,8 +107,8 @@ export function equalToTrue(v: any): boolean {
  * @param v it is a Object to determine.
  * @returns  if it should return true ,it will return false.
  */
-export function isFalse(v: any): boolean {
-  return !!v === false;
+export function isFalse(v: unknown): boolean {
+  return !v
 }
 
 /**
@@ -117,8 +117,8 @@ export function isFalse(v: any): boolean {
  * @param v
  * @returns v = false return true;
  */
-export function equalToFalse(v: any): boolean {
-  return v === false;
+export function equalToFalse(v: unknown): boolean {
+  return v === false
 }
 
 /**
@@ -129,13 +129,15 @@ export function equalToFalse(v: any): boolean {
  * @param v 要确定的对象
  * @returns 是基础类型则返回是 it is basic type ,ts is returned;
  */
-export function isPrimitive(v: any): v is string | number | boolean | symbol {
+export function isPrimitive(
+  v: unknown
+): v is string | number | boolean | symbol {
   return (
-    typeof v === "string" ||
-    typeof v === "number" ||
-    typeof v === "boolean" ||
-    typeof v === "symbol"
-  );
+    typeof v === 'string' ||
+    typeof v === 'number' ||
+    typeof v === 'boolean' ||
+    typeof v === 'symbol'
+  )
 }
 
 /**
@@ -144,8 +146,8 @@ export function isPrimitive(v: any): v is string | number | boolean | symbol {
  * @param v
  * @returns 是则返回true
  */
-export function isArray(v: any): v is any[] {
-  return Array.isArray(v);
+export function isArray(v: unknown): v is unknown[] {
+  return Array.isArray(v)
 }
 
 /**
@@ -154,8 +156,8 @@ export function isArray(v: any): v is any[] {
  * @param v
  * @returns 是则返回true
  */
-export function isObject(v: any): v is Object {
-  return v !== null && typeof v === "object";
+export function isObject(v: unknown): v is Object {
+  return v !== null && typeof v === 'object'
 }
 
 /**
@@ -165,8 +167,8 @@ export function isObject(v: any): v is Object {
  * @param v \
  * @returns
  */
-export function isString(x: any): x is string {
-  return typeof x === "string";
+export function isString(x: unknown): x is string {
+  return typeof x === 'string'
 }
 
 /**
@@ -177,8 +179,8 @@ export function isString(x: any): x is string {
  * @param v
  * @returns
  */
-export function isBoolean(v: any): boolean {
-  return typeof v === "boolean";
+export function isBoolean(v: unknown): v is boolean {
+  return typeof v === 'boolean'
 }
 
 /**
@@ -188,8 +190,8 @@ export function isBoolean(v: any): boolean {
  * @param v
  * @returns
  */
-export function isSymbol(v: any): v is symbol {
-  return typeof v === "symbol";
+export function isSymbol(v: unknown): v is symbol {
+  return typeof v === 'symbol'
 }
 /**
  * if is a number type ,it is return true;
@@ -198,8 +200,8 @@ export function isSymbol(v: any): v is symbol {
  * @param v
  * @returns
  */
-export function isNumber(v: any): boolean {
-  return typeof v === "number";
+export function isNumber(v: unknown): v is number {
+  return typeof v === 'number'
 }
 
 /**
@@ -208,8 +210,8 @@ export function isNumber(v: any): boolean {
  * @param v
  * @returns
  */
-export function isPromise(v: any) {
+export function isPromise(v: any): v is Promise<unknown> {
   return (
-    v instanceof Promise || (v.then === "function" && v.catch === "function")
-  );
+    v instanceof Promise || (v.then === 'function' && v.catch === 'function')
+  )
 }

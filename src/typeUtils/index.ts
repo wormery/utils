@@ -1,1 +1,1 @@
-export  * from "./baseComputed";
+export * from './baseComputed'

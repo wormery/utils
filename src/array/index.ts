@@ -5,17 +5,17 @@
  * @param item 将要删除的元素
  * @returns 返回-2代表数组长度为零，如果-1代表未找到，大于等于零是删除的元素下标
  */
-export function remove(arr: Array<any>, item: any): number {
-  if (arr.length) {
-    const index = arr.indexOf(item);
+export function remove (arr: any[], item: any): number {
+  if (arr.length > 0) {
+    const index = arr.indexOf(item)
     if (index > -1) {
       if (arr.splice(index, 1).length > 0) {
-        return index;
+        return index
       }
     }
-    return index;
+    return index
   }
-  return -2;
+  return -2
 }
 
 /**
@@ -26,22 +26,22 @@ export function remove(arr: Array<any>, item: any): number {
  * @param rest 任意数量的数组
  * @returns 返回新数组
  */
-export function mergeArray<T>(array: T[], index: number, ...rest: T[][]) {
-  let newArr = [];
-  let p1 = 0;
+export function mergeArray<T> (array: T[], index: number, ...rest: T[][]): T[] {
+  const newArr = []
+  let p1 = 0
   for (; p1 < index; p1++) {
-    newArr.push(array[p1]);
+    newArr.push(array[p1])
   }
   for (const restarr of rest) {
     for (const item of restarr) {
-      newArr.push(item);
+      newArr.push(item)
     }
   }
   for (let i = p1; i < array.length; i++) {
-    const item = array[i];
-    newArr.push(item);
+    const item = array[i]
+    newArr.push(item)
   }
-  return newArr;
+  return newArr
 }
 
 /**
@@ -50,6 +50,6 @@ export function mergeArray<T>(array: T[], index: number, ...rest: T[][]) {
  * @param arr 数组
  * @returns 无重复的数组
  */
-export function unique<E extends any[]>(arr: E) {
-  return Array.from(new Set(arr));
+export function unique<E extends any[]> (arr: E): E {
+  return Array.from(new Set(arr)) as E
 }

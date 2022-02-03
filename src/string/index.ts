@@ -1,1 +1,1 @@
-export * from "./varStyle";
+export * from './varStyle'

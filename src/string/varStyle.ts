@@ -1,4 +1,4 @@
-import { cached, lazyFun, selectCached } from "..";
+import { lazyFun, selectCached } from '..'
 
 /**
  * 转换为骆驼命名法
@@ -10,17 +10,17 @@ export const camelize = lazyFun(selectCached, (str: string) => {
    * 括号里的是第一组
    * 第一组应该是-
    */
-  const camelizeRE = /-(\w)/g;
+  const camelizeRE = /-(\w)/g
 
-  return str.replace(camelizeRE, (_, r: string) => r.toUpperCase());
-});
+  return str.replace(camelizeRE, (_, r: string) => r.toUpperCase())
+})
 
 /**
  * 首字母大写
  */
 export const capitalize = lazyFun(selectCached, (str: string) => {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-});
+  return str.charAt(0).toUpperCase() + str.slice(1)
+})
 
 /**
  * 驼峰命名转横线命名法
@@ -31,12 +31,12 @@ export const hypnenate = lazyFun(
     /**
      * 大写字母
      */
-    const hypnenateRE = /([A-Z])/;
+    const hypnenateRE = /([A-Z])/
 
     return str
       .replace(hypnenateRE, (r: string) => {
-        return `-${r}`;
+        return `-${r}`
       })
-      .toLowerCase();
+      .toLowerCase()
   }
-);
+)

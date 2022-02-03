@@ -1,4 +1,4 @@
-import { equalToFalse, isNotUndef } from "..";
+import { equalToFalse, isNotUndef } from '..'
 
 /**
  * 缓存方法，传入一个函数，要求传入的函数的第一个参数为一个str，用作key
@@ -15,14 +15,14 @@ import { equalToFalse, isNotUndef } from "..";
 export function cached<A extends any[], R>(
   handle: (str: string, ...rest: A) => R
 ): (str: string, ...rest: A) => R {
-  const cache = Object.create(null);
+  const cache = Object.create(null)
 
   const cachecd = function (str: string, ...rest: A): R {
-    const obj = cache[str];
-    return isNotUndef(obj) ? obj : (cache[str] = handle(str, ...rest));
-  };
+    const obj = cache[str]
+    return isNotUndef(obj) ? obj : (cache[str] = handle(str, ...rest))
+  }
 
-  return cachecd;
+  return cachecd
 }
 
 /**
@@ -37,13 +37,13 @@ export function cached<A extends any[], R>(
  */
 export function selectCached<A extends any[], R>(
   fun: (str: string, ...rest: A) => R
-) {
-  const cacheds = cached(fun);
+): (str: string, ...rest: A) => R {
+  const cacheds = cached(fun)
   return (str: string, ...rest: A): R => {
     if (equalToFalse(rest[rest.length - 1])) {
-      return fun(str, ...rest);
+      return fun(str, ...rest)
     } else {
-      return cacheds(str, ...rest);
+      return cacheds(str, ...rest)
     }
-  };
+  }
 }

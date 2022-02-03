@@ -11,16 +11,13 @@
  * @returns 输出一个函数，
  */
 export function makeMap(mapString: string): (v: any) => boolean {
-  const arr = mapString.split(",");
+  const arr = mapString.split(',')
 
-  let map: any = Object.create(null);
+  const map: any = Object.create(null)
 
   for (let i = 0; i < map.length; i++) {
-    map[arr[i]] = true;
+    map[arr[i]] = true
   }
 
-  return (v: any) => !!v && !!map[v.toLocaleLowerCase()];
+  return (v: any) => Boolean(v) && Boolean(map[v.toLocaleLowerCase()])
 }
-
-
-

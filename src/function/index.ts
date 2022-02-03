@@ -10,12 +10,12 @@
 export function lazyFun<A1 extends any[], A2 extends any[], R>(
   fun: (...rest: A1) => (...rest: A2) => R,
   ...rest1: A1
-) {
-  //存储传入的高级函数返回的函数， 你是不是晕了，我写的时候也把自己绕进去了
-  let rf: any = (...rest2: A2) => (rf = fun(...rest1))(...rest2);
-  //这里目前简化不了只能返回高级函数， 是无法直接返回我们传入的高级函数里面返回的高级函数的，
-  //因为使用者已经将其放到了变量里，我们改不了他的变量,只能套一层改自己的了变量了
-  return (...rest2: A2) => rf(...rest2);
+): (...rest: A2) => R {
+  // 存储传入的高级函数返回的函数， 你是不是晕了，我写的时候也把自己绕进去了
+  let rf: any = (...rest2: A2) => (rf = fun(...rest1))(...rest2)
+  // 这里目前简化不了只能返回高级函数， 是无法直接返回我们传入的高级函数里面返回的高级函数的，
+  // 因为使用者已经将其放到了变量里，我们改不了他的变量,只能套一层改自己的了变量了
+  return (...rest2: A2) => rf(...rest2)
 }
 
 /**
@@ -24,14 +24,14 @@ export function lazyFun<A1 extends any[], A2 extends any[], R>(
  * @param fn
  * @returns  新的函数
  */
-export function polyfillBind<F extends { (...rest: any): any }>(
+export function polyfillBind<A, R>(
   _this: Object,
-  fn: F
-) {
-  const boundFn: F = <F>function (...rest: any) {
-    return fn.apply(_this, rest);
-  };
-  return boundFn;
+  fn: (...rest: A[]) => R
+): (...rest: A[]) => R {
+  const boundFn = function (...rest: any): R {
+    return fn.apply(_this, rest)
+  }
+  return boundFn
 }
 
 /**
@@ -45,14 +45,15 @@ export function call<A extends any[], R, THIS>(
   _this: THIS,
   fun: (...rest: A) => R,
   ...rest: A
-) {
-  //使用symbol可以避免产生重复
-  let temp = Symbol("temp");
+): R {
+  // 使用symbol可以避免产生重复
+  const temp = Symbol('temp')
 
-  (_this as any)[temp] = fun;
+  ;(_this as any)[temp] = fun
 
-  let ret = (_this as any)[temp](...rest);
+  const ret = (_this as any)[temp](...rest)
 
-  delete (_this as any)[temp];
-  return ret;
+  // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+  delete (_this as any)[temp]
+  return ret
 }
