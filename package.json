@@ -1,6 +1,6 @@
 {
   "name": "@wormery/utils",
-  "version": "1.1.0-alpha.0",
+  "version": "1.1.0",
   "description": "一个工具库",
   "publishConfig": {
     "access": "public"
@@ -28,7 +28,9 @@
     "build": "pnpm build:all",
     "build:all": "pnpm rollup -c",
     "format": "prettier --write \"./**/*.{js,jsx,json,yaml}\"",
-    "release:minor-alpha": "pnpm standard-version --release-as minor --prerelease alpha"
+    "release:minor-alpha": "pnpm standard-version --release-as minor --prerelease alpha",
+    "release": "pnpm standard-version",
+    "pub": "npm publish"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.0.1",
