@@ -1,3 +1,5 @@
+import { hasProp } from 'src'
+
 /**
  * it can check whether is a undefine type ,
  * it till you.
@@ -48,7 +50,7 @@ export function isFunction(v: unknown): v is Function {
  * @returns
  */
 export function isEmpty(v: string): boolean {
-  return v.length === 0
+  return isObject(v) && hasProp(v, 'length') && v.length === 0
 }
 
 /**
